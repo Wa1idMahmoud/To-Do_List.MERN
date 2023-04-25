@@ -55,8 +55,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Welcome, Tyler</h1>
-			<h4>Your tasks</h4>
+			<h1>Welcome, Walid Mahmoud</h1>
+			<h4>Your tasks!</h4>
 
 			<div className="todos">
 				{todos.length > 0 ? todos.map(todo => (

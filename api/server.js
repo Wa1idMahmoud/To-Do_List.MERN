@@ -64,15 +64,25 @@ app.delete('/todo/delete/:id', async (req, res) => {
 
 /* handles a PUT request to update a todo's completion status by toggling the "complete" field in the database and then returning the updated todo as a JSON response. */
 app.get('/todo/complete/:id', async (req, res) => {
-	const todo = await Todo.findById(req.params.id);
-
-	todo.complete = !todo.complete;
-
-	todo.save();
-
-	res.json(todo);
-
-});
+    try {
+      const todo = await Todo.findById(req.params.id);
+  
+      if (!todo) {
+        res.status(404).json({ error: "Todo not found" });
+        return;
+      }
+  
+      todo.complete = !todo.complete;
+  
+      todo.save();
+  
+      res.json(todo);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error" });
+    }
+  });
+  
 
 /* */
 app.put('/todo/update/:id', async (req, res) => {
