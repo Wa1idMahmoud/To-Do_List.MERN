@@ -1,0 +1,170 @@
+:root {
+	--primary: #D81E5B; /* Primary color variable */
+	--secondary: #8A4EFC; /* Secondary color variable */
+	--light: #EEE; /* Light color variable */
+	--light-alt: #61759b; /* Alternate light color variable */
+	--dark: #131A26; /* Dark color variable */
+	--dark-alt: #202B3E; /* Alternate dark color variable */
+}
+
+* {
+	margin: 0; /* Set margin to 0 for all elements */
+	padding: 0; /* Set padding to 0 for all elements */
+	box-sizing: border-box; /* Use border-box box sizing for all elements */
+
+	font-family: "Fira Sans", sans-serif; /* Set font for all elements */
+}
+
+body {
+	background-color: var(--dark-alt); /* Set background color to the dark alternate variable */
+	color: var(--light); /* Set text color to the light variable */
+}
+
+.App {
+	padding: 32px; /* Add padding to App class element */
+}
+
+h1 {
+	font-size: 40px; /* Set font size */
+	font-weight: 700; /* Set font weight */
+	margin-bottom: 32px; /* Add margin bottom */
+}
+
+h4 {
+	font-size: 18px; /* Set font size */
+	color: var(--light-alt); /* Set text color to the alternate light variable */
+	text-transform: uppercase; /* Transform text to uppercase */
+	font-weight: 400; /* Set font weight */
+	margin-bottom: 16px; /* Add margin bottom */
+}
+
+.todo {
+	position: relative; /* Set position to relative */
+	background-color: var(--dark); /* Set background color to the dark variable */
+	padding: 16px; /* Add padding */
+	border-radius: 16px; /* Add border radius */
+	display: flex; /* Display as flex */
+	align-items: center; /* Align items to center */
+	transition: 0.5s; /* Add transition effect */
+	cursor: pointer; /* Set cursor to pointer */
+	margin-bottom: 16px; /* Add margin bottom */
+}
+
+.todo:hover {
+	opacity: 0.8; /* Set opacity to 0.8 on hover */
+}
+
+.todo .checkbox {
+	width: 20px; /* Set width */
+	height: 20px; /* Set height */
+	margin-right: 16px; /* Add margin right */
+	border-radius: 50%; /* Add border radius */
+	background-color: var(--dark-alt); /* Set background color to the dark alternate variable */
+	background-image: linear-gradient(to bottom, transparent, transparent); /* Add background gradient */
+	transition: 0.4s; /* Add transition effect */
+}
+
+.todo.is-complete .checkbox {
+	background-color: var(--primary); /* Set background color to the primary variable */
+	background-image: linear-gradient(to bottom, var(--primary), var(--secondary)); /* Add background gradient */
+}
+
+.todo .text {
+	font-size: 20px; /* Set font size */
+}
+
+.todo.is-complete .text {
+	text-decoration: line-through; /* Add text decoration */
+}
+
+.todo .delete-todo {
+	position: absolute; /* Set position to absolute */
+	top: 50%; /* Set position from top */
+	transform: translateY(-50%); /* Transform from Y axis */
+	right: 16px; /* Set position from right */
+	color: var(--light); /* Set text color to the light variable */
+	width: 24px; /* Set width */
+	height: 24px; /* Set height */
+	border-radius: 50%; /* Add border radius */
+	background-color: #AF1E2D; /* Set background color */
+	display: flex; /* Display as flex */
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+}
+
+.addPopup {
+	position: fixed;            /* The popup is fixed relative to the viewport. */
+	bottom: 32px;               /* The popup is 32 pixels from the bottom of the viewport. */
+	right: 32px;                /* The popup is 32 pixels from the right of the viewport. */
+	display: flex;              /* The popup is displayed as a flex container. */
+	align-items: center;        /* The flex items are centered along the cross axis. */
+	justify-content: center;    /* The flex items are centered along the main axis. */
+
+	width: 64px;                /* The popup has a width of 64 pixels. */
+	height: 64px;               /* The popup has a height of 64 pixels. */
+	border-radius: 999px;       /* The popup has a circular border with a radius of 999 pixels. */
+	font-size: 28px;            /* The font size of the popup is 28 pixels. */
+	font-weight: 900;           /* The font weight of the popup is 900 (bold). */
+	color: var(--light);        /* The text color of the popup is the value of the CSS variable '--light'. */
+	background-color: var(--primary);   /* The background color of the popup is the value of the CSS variable '--primary'. */
+	background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));   /* The background image of the popup is a linear gradient that transitions from the value of '--primary' to the value of '--secondary' in a bottom-right direction. */
+	cursor: pointer;            /* The cursor is set to a pointer when hovering over the popup, indicating that it is clickable. */
+}
+
+.popup {
+	position: fixed;            /* The popup is fixed relative to the viewport. */
+	top: 50%;                   /* The top of the popup is positioned at 50% of the viewport height. */
+	left: 50%;                  /* The left of the popup is positioned at 50% of the viewport width. */
+	transform: translate(-50%, -50%);   /* The popup is moved back 50% of its own width and height, centering it in the viewport. */
+
+	width: 100%;                /* The popup has a width of 100% of its parent container. */
+	max-width: 400px;           /* The maximum width of the popup is 400 pixels. */
+	background-color: var(--light);    /* The background color of the popup is the value of the CSS variable '--light'. */
+	padding: 32px;              /* The popup has 32 pixels of padding around its content. */
+	border-radius: 16px;        /* The popup has a rounded border with a radius of 16 pixels. */
+	box-shadow: 0px 4px 32px var(--dark);    /* The popup has a box shadow with a horizontal offset of 0 pixels, a vertical offset of 4 pixels, a blur radius of 32 pixels, and a color value of the CSS variable '--dark'. */
+}
+
+.closePopup {
+	position: absolute; /* sets the position of the element */
+	top: 16px; /* sets the distance from the top of the parent container */
+	right: 16px; /* sets the distance from the right side of the parent container */
+	width: 20px; /* sets the width of the element */
+	height: 20px; /* sets the height of the element */
+	font-size: 20px; /* sets the font size of the element */
+	color: var(--dark); /* sets the color of the text */
+	cursor: pointer; /* sets the type of cursor to display when hovering over the element */
+}
+
+.popup h3 {
+	color: var(--dark); /* sets the color of the text */
+	margin-bottom: 16px; /* sets the margin at the bottom of the element */
+	font-weight: 400; /* sets the font weight of the text */
+	text-transform: uppercase; /* transforms the text to uppercase */
+}
+
+.add-todo-input {
+	appearance: none; /* hides the default appearance of the input element */
+	outline: none; /* removes the outline that appears around the element when it is selected */
+	border: none; /* removes the border around the element */
+	background-color: #FFF; /* sets the background color of the element */
+	padding: 16px; /* sets the padding inside the element */
+	border-radius: 16px; /* sets the border radius of the element */
+	width: 100%; /* sets the width of the element to 100% of the parent container */
+	box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2); /* sets the box shadow of the element */
+	font-size: 20px; /* sets the font size of the element */
+}
+
+.button {
+	padding: 16px 32px; /* sets the padding inside the element */
+	border-radius: 999px; /* sets the border radius of the element to create a circular shape */
+	background-image: linear-gradient(to right, var(--primary), var(--secondary)); /* sets the background gradient of the element */
+	display: inline-block; /* sets the display property of the element to inline-block */
+	font-weight: 700; /* sets the font weight of the text */
+	text-transform: uppercase; /* transforms the text to uppercase */
+	font-size: 18px; /* sets the font size of the text */
+	margin-top: 16px; /* sets the margin at the top of the element */
+	text-align: center; /* aligns the text to the center */
+	cursor: pointer; /* sets the type of cursor to display when hovering over the element */
+}
