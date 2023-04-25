@@ -55,12 +55,19 @@ app.post('/todo/new', (req, res) => {
     .catch(error => res.status(500).json({ error }));
 });
 
-/* This code defines a DELETE request to delete a todo item from the database based on its ID */
 app.delete('/todo/delete/:id', async (req, res) => {
-	const result = await Todo.findByIdAndDelete(req.params.id);
-
-	res.json({result});
-});
+    try {
+      const todo = await Todo.findById(req.params.id);
+      if (!todo) {
+        return res.status(404).send('Todo not found');
+      }
+      await Todo.findByIdAndDelete(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+    }
+  });  
 
 /* handles a PUT request to update a todo's completion status by toggling the "complete" field in the database and then returning the updated todo as a JSON response. */
 app.get('/todo/complete/:id', async (req, res) => {
